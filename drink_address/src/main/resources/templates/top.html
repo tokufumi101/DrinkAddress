@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>トップページ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="header-logo">
+			飲み物住所
+			</div>
+			<div class="header-list">
+				<ul>
+					<li>飲み物一覧</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<main>
+		<h1 th:text="${message}">ようこそ</h1>
+		<form method="get" th:action="@{/top}">
+			<p>住所：<input type="text" name="address"></p>
+			<input type="submit" value="送信">
+		</form>
+	</main>
+</body>
+</html>

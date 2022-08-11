@@ -1,0 +1,2 @@
+private DrinkEnt drinkId;　テーブルを結合する際、ManyToOne側のフィールド変数の型は、OneToMany側のEntityのクラス名にする（8/11）
+
