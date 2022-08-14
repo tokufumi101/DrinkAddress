@@ -1,6 +1,22 @@
 @charset "UTF-8";
-.header-list li{
-	list-style:none;
-	
+
+header{
+  height:65px;
+  background-color:rgba(34, 49, 52, 0.9);
+  color:white;
 }
+.header-list{
+	list-style:none;
+	float:right;
+}
+.container{
+	width: auto;
+    padding:0px 15px;
+    margin: 0 auto;
+}
+
+.header-logo{
+	float:left;
+}
+
 

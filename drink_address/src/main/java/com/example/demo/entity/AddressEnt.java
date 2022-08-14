@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="address_list")
+@Table(name="address_list_git")
 public class AddressEnt{
 	
 	@Column(name="id")
