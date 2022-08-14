@@ -9,21 +9,37 @@
 	<header>
 		<div class="container">
 			<div class="header-logo">
-			飲み物住所
+				<p>飲み物住所</p>
 			</div>
 			<div class="header-list">
-				<ul>
-					<li>飲み物一覧</li>
-				</ul>
+				<p>飲み物一覧<select name="drinkName">
+				<option value="default">下から選択</option>
+				<option value="pocari">缶ポカリ</option>
+				<option value="pepsi">ペプシ</option>
+				<option value="pepsiTwist">ペプシツイスト</option>
+				<option value="DoctorPepper">ドクターペッパー</option>
+			</select></p>
 			</div>
 		</div>
 	</header>
 	<main>
-		<h1 th:text="${message}">ようこそ</h1>
-		<form method="get" th:action="@{/top}">
-			<p>住所：<input type="text" name="address"></p>
-			<input type="submit" value="送信">
-		</form>
+		<div class="container">
+			<h1 th:text="${message}">ようこそ</h1>
+			<select name="drinkName">
+				<option value="default">下から選択</option>
+				<option value="pocari">缶ポカリ</option>
+				<option value="pepsi">ペプシ</option>
+				<option value="pepsiTwist">ペプシツイスト</option>
+				<option value="DoctorPepper">ドクターペッパー</option>
+			</select>
+			<form method="get" th:action="@{/top}">
+				<p>
+					住所：<input type="text" name="address">
+				</p>
+				<input type="submit" value="送信">
+			</form>
+		</div>
+
 	</main>
 </body>
 </html>
