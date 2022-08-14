@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,13 +22,13 @@ public class AddressEnt{
 	@Column(name="id")
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private long id;
 	
 	@Column(name="encount_date")
 	private Timestamp encountDate;
 	
 	@ManyToOne()
-	@JoinColumn(name="drink_id",referencedColumnName = "id")
+//	@JoinColumn(name="drink_id",referencedColumnName = "id")
 	private DrinkEnt drinkId;
 	
 	@Column(name="address")

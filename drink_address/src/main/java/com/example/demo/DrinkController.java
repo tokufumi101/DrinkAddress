@@ -22,9 +22,17 @@ public class DrinkController {
 		model.addAttribute("message","ようこそ");
 		return "top";
 	}
+	
 	@PostMapping("/top")
 		public String add(Model model,AddressEnt addressent) {
 			model.addAttribute("message","登録完了しました");
+//	
+//			System.out.println(address);
+//			addressent.setId(id);
+//			addressent.setAddress(address);
+			System.out.println(addressent.getId());
+			System.out.println(addressent.getAddress());
+
 			  repository.saveAndFlush(addressent);
 			return "top";
 	}

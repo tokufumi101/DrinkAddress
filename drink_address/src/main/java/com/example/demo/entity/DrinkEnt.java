@@ -20,7 +20,7 @@ public class DrinkEnt {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 //	@OneToMany(mappedBy="address_list")
-	private String id;
+	private long id;
 	@Column(name="name")
 	private String name;
 }
