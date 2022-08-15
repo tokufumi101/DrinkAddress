@@ -25,16 +25,18 @@
 	<main>
 		<div class="container">		
 			<h1 th:text="${message}">ようこそ</h1>
-			<select name="drinkname">
+		<form method="post" th:action="@{/top}" th:object="${addressent}">
+		
+			<select name="drink_id">
 				<option value="default">下から選択</option>
-				<option value="pocari">缶ポカリ</option>
-				<option value="pepsi">ペプシ</option>
-				<option value="pepsiTwist">ペプシツイスト</option>
-				<option value="DoctorPepper">ドクターペッパー</option>
+				<option value=1>缶ポカリ</option>
+				<option value=2>ペプシ</option>
+				<option value=3>ペプシツイスト</option>
+				<option value=4>ドクターペッパー</option>
+				
 			</select>
-<form method="post" th:action="@{/top}" th:object="${addressent}">
 				<p>
-					住所：<input type="text" name="address" th:value="address">
+					住所：<input type="text" name="address" >
 				</p>
 				<input type="submit" value="送信">
 			</form>
