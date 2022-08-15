@@ -10,4 +10,13 @@ public class DrinkAddressApplication {
 		SpringApplication.run(DrinkAddressApplication.class, args);
 	}
 
+//	@Autowired
+//	private DrinkDao dDao;
+//	
+//	@Override
+//	public void run(String... args)throws Exception{
+//		DrinkEnt pepsi = new DrinkEnt(1,"ペプシ");
+//		dDao.save(pepsi);
+//	}
+	
 }

@@ -16,20 +16,22 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="address_list_git")
+@Table(name="address_list")
 public class AddressEnt{
 	
 	@Column(name="id")
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(name="encount_date")
 	private Timestamp encountDate;
 	
-	@ManyToOne()
-//	@JoinColumn(name="drink_id",referencedColumnName = "id")
-	private DrinkEnt drinkId;
+
+	@ManyToOne
+//	@JoinColumn(name="drink_list_id",referencedColumnName = "id")
+	private DrinkEnt drinkent;
+
 	
 	@Column(name="address")
 	private String address;

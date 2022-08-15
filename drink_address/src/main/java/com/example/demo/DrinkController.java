@@ -16,6 +16,8 @@ public class DrinkController {
 
 	@Autowired
 	DrinkDao repository; 
+	@Autowired
+	AddressDao addressRepository;
 	
 	
 	@GetMapping("/top")
@@ -23,6 +25,7 @@ public class DrinkController {
 		model.addAttribute("message","ようこそ");
 		return "top";
 	}
+
 	
 	@PostMapping("/top")
 		public String add(Model model,AddressEnt addressent,@RequestParam long drink_id) //このままではDBに入れられないので、drink_id部分は変更の良チアr
@@ -33,5 +36,24 @@ public class DrinkController {
 			  repository.saveAndFlush(addressent);
 			return "top";
 	}
+//	@PostMapping("/top")
+//		public String add(Model model,AddressEnt addressent) {
+//			model.addAttribute("message","登録完了しました");
+//			  repository.saveAndFlush(addressent);
+//			  
+//			return "list";
+//	}
+	@GetMapping("/list")
+	public String list(Model model,AddressEnt addressent) {
+		System.out.println(addressent.getId());
+		System.out.println(addressent.getAddress());
+		repository.saveAndFlush(addressent);
+//		addressRepository.saveAndFlush();
+		System.out.println(addressent.getId());
+		System.out.println(addressent.getAddress());
+		return "list";
+
+	}
+	
 
 }
