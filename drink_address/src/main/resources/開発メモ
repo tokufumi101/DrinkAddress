@@ -1,3 +1,6 @@
+8/18
+次回Todo：data,schemaに初期値を入力。addressテーブルの全カラムにデータを追加する。
+
 8/15 DrinkEnt型→long型にキャストできない
 →初めからDrinkEnt型以外の型としてControllerに送ってみてはどうか
 →ここでDto（アプリ内の変数受け渡し専用クラス）を作ってみてはどうか
