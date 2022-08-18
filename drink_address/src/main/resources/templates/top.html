@@ -12,35 +12,36 @@
 				<p>飲み物住所</p>
 			</div>
 			<div class="header-list">
-				<p>飲み物一覧<select name="drinkName">
-				<option value="default">下から選択</option>
-				<option value="pocari">缶ポカリ</option>
-				<option value="pepsi">ペプシ</option>
-				<option value="pepsiTwist">ペプシツイスト</option>
-				<option value="DoctorPepper">ドクターペッパー</option>
-			</select></p>
+				<p>
+					飲み物一覧<select name="name">
+						<option value="default">下から選択</option>
+						<option value="pocari">缶ポカリ</option>
+						<option value="pepsi">ペプシ</option>
+						<option value="pepsiTwist">ペプシツイスト</option>
+						<option value="DoctorPepper">ドクターペッパー</option>
+					</select>
+				</p>
 			</div>
 		</div>
 	</header>
 	<main>
-		<div class="container">		
+		<div class="container">
 			<h1 th:text="${message}">ようこそ</h1>
-		<form method="post" th:action="@{/top}" th:object="${addressent}">
-		
-			<select name="drink_id">
-				<option value="default">下から選択</option>
-				<option value=1>缶ポカリ</option>
-				<option value=2>ペプシ</option>
-				<option value=3>ペプシツイスト</option>
-				<option value=4>ドクターペッパー</option>
-				
-			</select>
-<<<<<<< HEAD
-=======
-			<form method="get" th:action="@{/list}" th:object="${addressent}">
->>>>>>> stash
+			<form method="post" th:action="@{/top}" th:object="${drinkDto}">
+
+				<select name="id&name">
+					<option value="default">下から選択</option>
+					<option value="1&缶ポカリ">缶ポカリ</option>
+					<option value="2&ペプシ">ペプシ</option>
+					<option value="3&ペプシツイスト">ペプシツイスト</option>
+					<option value="4&ドクターペッパー">ドクターペッパー</option>
+
+				</select>
+
+				<!-- <form method="get" th:action="@{/list}" th:object="${addressent}"> -->
+
 				<p>
-					住所：<input type="text" name="address" >
+					住所：<input type="text" name="address">
 				</p>
 				<input type="submit" value="送信">
 			</form>

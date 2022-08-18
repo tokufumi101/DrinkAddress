@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -28,9 +27,9 @@ public class AddressEnt{
 	private Timestamp encountDate;
 	
 
-	@ManyToOne
+//	@ManyToOne
 //	@JoinColumn(name="drink_list_id",referencedColumnName = "id")
-	private DrinkEnt drinkent;
+	private long drinkId;
 
 	
 	@Column(name="address")
