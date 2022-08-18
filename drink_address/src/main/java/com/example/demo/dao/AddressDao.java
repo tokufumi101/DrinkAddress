@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.AddressEnt;
 
 @Repository
-public interface DrinkDao extends JpaRepository<AddressEnt,String>{
+public interface AddressDao extends JpaRepository<AddressEnt,Long> {
+
 	
 }
