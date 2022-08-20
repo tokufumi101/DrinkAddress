@@ -1,3 +1,9 @@
+8/20
+・デフォルトでは(schema.sql,data.sql)->hibernate(@Entity)の順で読み込まれるので、順序を変えたいならspring.jpa.defer-datasource-initialization=trueをapplication.propertiesに追記
+・@NoArgsConstructor,@AllArgsConstructorでコンストラクタを自動で作ることができる
+
+
+
 8/18
 次回Todo：data,schemaに初期値を入力。addressテーブルの全カラムにデータを追加する。
 
