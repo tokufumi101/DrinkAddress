@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,8 @@ public class DrinkController {
 	@GetMapping("/top")
 	public String top(Model model) {
 		model.addAttribute("message","ようこそ");
+	    List list =drinkRepository.findAll();
+	    model.addAttribute("data", list); 
 		return "top";
 	}
 

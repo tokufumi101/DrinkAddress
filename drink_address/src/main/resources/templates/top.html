@@ -37,14 +37,32 @@
 					<option value="4&ドクターペッパー">ドクターペッパー</option>
 
 				</select>
+				<!--  <label for="ice-cream-choice">Choose a flavor:</label> <input
+					list="ice-cream-flavors" id="ice-cream-choice"
+					name="ice-cream-choice" />
 
-				<!-- <form method="get" th:action="@{/list}" th:object="${addressent}"> -->
+				<datalist id="ice-cream-flavors">
+					<option value="Chocolate"><option value="Coconut">
+    
+					<option value="Mint">
+    
+					<option value="Strawberry">
+    
+					<option value="Vanilla">
+
+				</datalist> -->
+				
+				<input list="DrinkList" />
+						<datalist id="DrinkList">
+							<option th:each="item : ${data}" >[[${item.name}]]</option>
+						</datalist>
 
 				<p>
 					住所：<input type="text" name="address">
 				</p>
 				<input type="submit" value="送信">
-			</form>
+			
+					</form>
 		</div>
 
 	</main>
