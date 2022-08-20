@@ -5,15 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Getter
 @Setter
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="drink_list")
 @Entity
 public class DrinkEnt {
 	
+//
+//	public DrinkEnt(int i, String string) {
+//		this.setId(i);
+//		this.setName(string);
+//	}
+
 	@Column(name="id")
 	@Id
 //	@GeneratedValue(strategy=GenerationType.IDENTITY)

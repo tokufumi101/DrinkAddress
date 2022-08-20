@@ -11,12 +11,12 @@ public class DrinkAddressApplication {
 	}
 
 //	@Autowired
-//	private DrinkDao dDao;
+//	private DrinkDao Dao;
 //	
 //	@Override
 //	public void run(String... args)throws Exception{
 //		DrinkEnt pepsi = new DrinkEnt(1,"ペプシ");
-//		dDao.save(pepsi);
+//		Dao.save(pepsi);
 //	}
 	
 }
