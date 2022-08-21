@@ -38,41 +38,33 @@ public class DrinkController {
 
 	
 	@PostMapping("/top")
-		public String add(@RequestParam("id&name")String idName, Model model,
+		public String add(@RequestParam("name")String name, Model model,
 				DrinkEnt drinkEnt,AddressEnt addressEnt,
 				@ModelAttribute DrinkDto drinkDto){
 			
-			
-			String idNamelist []=idName.split("&");
-			long id=Long.parseLong(idNamelist[0]);
-			String name = idNamelist[1];
-			System.out.println(id);
-			System.out.println(name);
-			drinkEnt.setId(id);  
-			drinkEnt.setName(name);
-			drinkRepository.saveAndFlush(drinkEnt); 
+		DrinkEnt drinkdata = drinkRepository.findByName(name);
+		List list = drinkRepository.findAll();
+		if( drinkdata==null) {
+			System.out.println("DBにないよ");	
+			//新しいドリンクの保存
+			DrinkEnt newdrink = new DrinkEnt (name);
+			newdrink.setId(list.size()+1); //今後、変更の必要あり（generatedvalueとかでもっといい感じにできそうなので）
+			drinkRepository.save(newdrink);
+			addressEnt.setDrinkId(newdrink.getId());
+		}else {
+			System.out.println("DBにあるよ");
+			addressEnt.setDrinkId(drinkdata.getId());
+		}
+		
+		//addressentの保存
+		addressEnt.setAddress(drinkDto.getAddress());
+		addressRepository.saveAndFlush(addressEnt);
+
 			model.addAttribute("message","登録完了しました");
-//			System.out.println(addressent.getAddress());
-//			System.out.println(drink_id);
-			
-//			System.out.println(addressent.getDrinkent());
-			addressEnt.setAddress(drinkDto.getAddress());
-			addressEnt.setDrinkId(id);
-			addressRepository.saveAndFlush(addressEnt);
-//			  
-//			repository.saveAndFlush(drinkEnt);  
-//			System.out.println(drinkEnt.getId());
-//			System.out.println(drinkEnt.getName());
 			
 			return "top";
 	}
-//	@PostMapping("/top")
-//		public String add(Model model,AddressEnt addressent) {
-//			model.addAttribute("message","登録完了しました");
-//			  repository.saveAndFlush(addressent);
-//			  
-//			return "list";
-//	}
+
 	@GetMapping("/list")
 	public String list(Model model,AddressEnt addressent) {
 //		System.out.println(addressent.getId());

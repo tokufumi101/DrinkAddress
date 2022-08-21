@@ -23,6 +23,10 @@ public class DrinkEnt {
 //		this.setName(string);
 //	}
 
+	public DrinkEnt(String name) {
+		this.name = name;
+	}
+
 	@Column(name="id")
 	@Id
 //	@GeneratedValue(strategy=GenerationType.IDENTITY)

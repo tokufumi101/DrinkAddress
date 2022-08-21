@@ -28,31 +28,8 @@
 		<div class="container">
 			<h1 th:text="${message}">ようこそ</h1>
 			<form method="post" th:action="@{/top}" th:object="${drinkDto}">
-
-				<select name="id&name">
-					<option value="default">下から選択</option>
-					<option value="1&缶ポカリ">缶ポカリ</option>
-					<option value="2&ペプシ">ペプシ</option>
-					<option value="3&ペプシツイスト">ペプシツイスト</option>
-					<option value="4&ドクターペッパー">ドクターペッパー</option>
-
-				</select>
-				<!--  <label for="ice-cream-choice">Choose a flavor:</label> <input
-					list="ice-cream-flavors" id="ice-cream-choice"
-					name="ice-cream-choice" />
-
-				<datalist id="ice-cream-flavors">
-					<option value="Chocolate"><option value="Coconut">
-    
-					<option value="Mint">
-    
-					<option value="Strawberry">
-    
-					<option value="Vanilla">
-
-				</datalist> -->
-				
-				<input list="DrinkList" />
+	
+				<input list="DrinkList" name="name"/>
 						<datalist id="DrinkList">
 							<option th:each="item : ${data}" >[[${item.name}]]</option>
 						</datalist>

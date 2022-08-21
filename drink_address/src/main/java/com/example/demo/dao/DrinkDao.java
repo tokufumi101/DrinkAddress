@@ -7,5 +7,6 @@ import com.example.demo.entity.DrinkEnt;
 
 @Repository
 public interface DrinkDao extends JpaRepository<DrinkEnt,Long>{
-	
+	public  DrinkEnt findByName(String string);
+
 }
