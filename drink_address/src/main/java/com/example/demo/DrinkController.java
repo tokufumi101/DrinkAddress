@@ -74,14 +74,21 @@ public class DrinkController {
 
 		DrinkEnt drink = drinkRepository.findByName(name);
 		addressEnt.setDrinkId(drink.getId());
+		
+		addressEnt.setDrinkEnt(drink);
+		System.out.println(addressEnt.getDrinkEnt().getName());
+//		System.out.println(drink.getName());
+		
 		// データがそろったのでテーブルに登録
 		addressRepository.saveAndFlush(addressEnt);
 		
 		List addressList=addressRepository.findAll();
+		
+		
+		
 		model.addAttribute("tableData",addressList);
-		DrinkEnt drinkNameTable=drinkRepository.findById(addressEnt.getId());
-		String nameFinal=drinkNameTable.getName();
-		model.addAttribute("tableData2",nameFinal);
+//		DrinkEnt drinkNameTable=drinkRepository.findById(addressEnt.getId());
+//		String nameFinal=drinkNameTable.getName();
 //		AddressDto addressTable=new AddressDto();
 //		addressTable.setAddressId(addressEnt.getId());
 //		addressTable.setAddress(addressEnt.getAddress());
