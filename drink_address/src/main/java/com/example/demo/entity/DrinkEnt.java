@@ -1,8 +1,11 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -28,12 +31,14 @@ public class DrinkEnt {
 //	@GeneratedValue(strategy=GenerationType.IDENTITY)
 //	@OneToMany(mappedBy="address_list")
 	private long id;
-
-	@Column(name="name")
+	
+	
+//	@JoinColumn(name="name",referencedColumnName="drinkName")
 	private String name;
 	
-//	@OneToMany(mappedBy="drinkent")
-//	private List<AddressEnt> addressEntList;
+	@OneToMany(mappedBy="drinkEnt")
+	
+	private List<AddressEnt> addressEntList;
 	
     public DrinkEnt(String name) {
 		
