@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.DrinkEnt;
 
 @Repository
-public interface DrinkDao extends JpaRepository<DrinkEnt,String>{
+public interface DrinkDao extends JpaRepository<DrinkEnt,Long>{
 	
+	public DrinkEnt findByName(String string);
+	public boolean existsByName(String string);
+	public DrinkEnt findById(long id);
 }
