@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>トップページ</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+ crossorigin="anonymous">
 </head>
 <body>
 	<header>
@@ -13,32 +16,24 @@
 			</div>
 			<div class="header-list">
 				<p>
-					飲み物一覧<select name="name">
-						<option value="default">下から選択</option>
-						<option value="pocari">缶ポカリ</option>
-						<option value="pepsi">ペプシ</option>
-						<option value="pepsiTwist">ペプシツイスト</option>
-						<option value="DoctorPepper">ドクターペッパー</option>
+					飲み物一覧<select name="select" onChange="location.href=value;">
+						<option value="#">下から選択</option>
+						<option th:each="item : ${data}" value="top.html">[[${item.name}]]</option>
 					</select>
 				</p>
 			</div>
 		</div>
 	</header>
 	<main>
+	<p class = "flashmsg" th:text="${flashmsg}"></p>
 		<div class="container">
 			<h1 th:text="${message}">ようこそ</h1>
 			<form method="post" th:action="@{/top}" th:object="${drinkDto}">
 
-				<select name="id&name">
-					<option value="default">下から選択</option>
-					<option value="1&缶ポカリ">缶ポカリ</option>
-					<option value="2&ペプシ">ペプシ</option>
-					<option value="3&ペプシツイスト">ペプシツイスト</option>
-					<option value="4&ドクターペッパー">ドクターペッパー</option>
-
-				</select>
-
-				<!-- <form method="get" th:action="@{/list}" th:object="${addressent}"> -->
+				<input list="DrinkList" autocomplete="off" name="name">
+				<datalist id="DrinkList">
+					<option th:each="item : ${data}">[[${item.name}]]</option>
+				</datalist>
 
 				<p>
 					住所：<input type="text" name="address">
@@ -46,7 +41,24 @@
 				<input type="submit" value="送信">
 			</form>
 		</div>
-
+		<table class="table"  >
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>住所</th>
+					<th>ドリンク名</th>
+					<th>登録日時</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item:${tableData}">
+					<th th:text="*{item.Id}"></th>
+					<td th:text="*{item.address}"></td>
+					<td th:text="${item.drinkId}"></td>
+					<td th:text="*{item.registerDate}"></td>
+				</tr>
+			</tbody>
+		</table>		
 	</main>
 </body>
 </html>

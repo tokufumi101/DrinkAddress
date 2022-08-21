@@ -6,11 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-@Getter
-@Setter
+
+@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="drink_list")
@@ -34,4 +34,10 @@ public class DrinkEnt {
 	
 //	@OneToMany(mappedBy="drinkent")
 //	private List<AddressEnt> addressEntList;
+	
+    public DrinkEnt(String name) {
+		
+		this.name = name;
+	}
+    
 }
