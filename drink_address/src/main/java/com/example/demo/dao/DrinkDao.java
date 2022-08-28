@@ -9,4 +9,8 @@ import com.example.demo.entity.DrinkEnt;
 public interface DrinkDao extends JpaRepository<DrinkEnt,Long>{
 	public  DrinkEnt findByName(String string);
 
+	public boolean existsByName(String string);
+	public DrinkEnt findById(long id);
+	
+
 }
