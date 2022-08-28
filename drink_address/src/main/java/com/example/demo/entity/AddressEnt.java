@@ -33,11 +33,6 @@ public class AddressEnt{
 	
 	@Column(name="register_date")
 	private Timestamp registerDate;
-	
-
-//	@ManyToOne
-//	@JoinColumn(name="drink_list_id",referencedColumnName = "id")
-	private long drinkId;
 
 	
 	@Column(name="address")

@@ -59,10 +59,10 @@ public class DrinkController {
 			DrinkEnt newdrink = new DrinkEnt (name);
 			newdrink.setId(list.size()+1); //今後、変更の必要あり（generatedvalueとかでもっといい感じにできそうなので）
 			drinkRepository.save(newdrink);
-			addressEnt.setDrinkId(newdrink.getId());
+//			addressEnt.setDrinkId(newdrink.getId());
 		}else {
 			System.out.println("DBにあるよ");
-			addressEnt.setDrinkId(drinkdata.getId());
+//			addressEnt.setDrinkId(drinkdata.getId());
 		}
 		
 		//addressentの保存
@@ -108,7 +108,7 @@ public class DrinkController {
 		addressEnt.setRegisterDate(timestamp);
 
 		DrinkEnt drink = drinkRepository.findByName(name);
-		addressEnt.setDrinkId(drink.getId());
+		
 		
 		addressEnt.setDrinkEnt(drink);
 		System.out.println(addressEnt.getDrinkEnt().getName());
