@@ -1,6 +1,5 @@
 package com.example.demo;
 
-
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -27,11 +26,15 @@ public class DrinkController {
 	@Autowired
 	AddressDao addressRepository;
 
-	@PostMapping("select")
-	public String select(Model model) {
-		model.addAttribute("message", "住所表示");
-		return "top";
-	}
+//	@GetMapping("/top")
+//	public String top(Model model) {
+//		model.addAttribute("message","ようこそ");
+//		
+//		System.out.println(drinkRepository.findAll());
+//		List<DrinkEnt> drinkList=drinkRepository.findAll();
+//		model.addAttribute("drink",drinkList);
+//		return "top";
+//	}
 	@GetMapping("/top")
 	public String top(Model model) {
 		model.addAttribute("message", "ようこそ");
@@ -42,48 +45,10 @@ public class DrinkController {
 		
 		
 		
-
 		return "top";
 	}
 
 	@PostMapping("/top")
-		public String add(@RequestParam("name")String name, Model model,
-				DrinkEnt drinkEnt,AddressEnt addressEnt,
-				@ModelAttribute DrinkDto drinkDto){
-			
-		DrinkEnt drinkdata = drinkRepository.findByName(name);
-		List list = drinkRepository.findAll();
-		if( drinkdata==null) {
-			System.out.println("DBにないよ");	
-			//新しいドリンクの保存
-			DrinkEnt newdrink = new DrinkEnt (name);
-			newdrink.setId(list.size()+1); //今後、変更の必要あり（generatedvalueとかでもっといい感じにできそうなので）
-			drinkRepository.save(newdrink);
-//			addressEnt.setDrinkId(newdrink.getId());
-		}else {
-			System.out.println("DBにあるよ");
-//			addressEnt.setDrinkId(drinkdata.getId());
-		}
-		
-		//addressentの保存
-		addressEnt.setAddress(drinkDto.getAddress());
-		addressRepository.saveAndFlush(addressEnt);
-
-			model.addAttribute("message","登録完了しました");
-			
-			return "top";
-	}
-
-	@GetMapping("/list")
-	public String list(Model model,AddressEnt addressent) {
-//		System.out.println(addressent.getId());
-//		System.out.println(addressent.getAddress());
-//		repository.saveAndFlush(addressent);
-////		addressRepository.saveAndFlush();
-//		System.out.println(addressent.getId());
-//		System.out.println(addressent.getAddress());
-		return "list";
-	}
 	public String add(@RequestParam("name") String name, Model model, DrinkEnt drinkEnt, AddressEnt addressEnt,
 			@ModelAttribute DrinkDto drinkDto,RedirectAttributes redirectAttributes) {
 
@@ -108,7 +73,7 @@ public class DrinkController {
 		addressEnt.setRegisterDate(timestamp);
 
 		DrinkEnt drink = drinkRepository.findByName(name);
-		
+//		addressEnt.setDrinkId(drink.getId());
 		
 		addressEnt.setDrinkEnt(drink);
 		System.out.println(addressEnt.getDrinkEnt().getName());
@@ -122,7 +87,19 @@ public class DrinkController {
 		
 		
 		model.addAttribute("tableData",addressList);
-
+//		DrinkEnt drinkNameTable=drinkRepository.findById(addressEnt.getId());
+//		String nameFinal=drinkNameTable.getName();
+//		AddressDto addressTable=new AddressDto();
+//		addressTable.setAddressId(addressEnt.getId());
+//		addressTable.setAddress(addressEnt.getAddress());
+//		addressTable.setDrinkName(drink.getName());
+//		addressTable.setRegisterDate(addressEnt.getRegisterDate());
+//		
+//		model.addAttribute("tableData",addressTable);
+//		int[] list2= {10,20,30,40};
+//		model.addAttribute("tableData2",list2);
+//		List<addressDto> addressList;
+//		addressDto.
 		redirectAttributes.addFlashAttribute("flashmsg","登録完了しました");
 		return "redirect:/top";
 	}
