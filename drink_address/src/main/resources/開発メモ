@@ -3,6 +3,7 @@
 学んだこと：one to many 主キーに自動的に紐づけられること。
 複数情報を飛ばす際にvalueに複数書いて、コントローラーでsplitで分ける。（推奨できるかは不明）
 valueが中身、nameが箱。
+jsonのレスポンスが配列で帰ってきた場合、JSONObject[0]で一つ目を抽出できる
 
 8/20
 ・デフォルトでは(schema.sql,data.sql)->hibernate(@Entity)の順で読み込まれるので、順序を変えたいならspring.jpa.defer-datasource-initialization=trueをapplication.propertiesに追記
