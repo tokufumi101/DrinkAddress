@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>住所一覧</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+ crossorigin="anonymous">
 </head>
 <body>
 	<header>
@@ -20,14 +23,24 @@
 	</header>
 	<main>
 		<div class="container">
-			<table>
-			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-				
-			</table>
+			<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>住所</th>
+					<th>ドリンク名</th>
+					<th>登録日時</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item:${selectedList}">
+					<th th:text="*{item.Id}"></th>
+					<td th:text="*{item.address}"></td>
+					<td th:text="${item.drinkEnt.name}"></td>
+					<td th:text="*{item.registerDate}"></td>
+				</tr>
+			</tbody>
+		</table>	
 		</div>
 	</main>
 </body>

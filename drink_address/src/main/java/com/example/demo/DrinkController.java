@@ -26,15 +26,6 @@ public class DrinkController {
 	@Autowired
 	AddressDao addressRepository;
 
-//	@GetMapping("/top")
-//	public String top(Model model) {
-//		model.addAttribute("message","ようこそ");
-//		
-//		System.out.println(drinkRepository.findAll());
-//		List<DrinkEnt> drinkList=drinkRepository.findAll();
-//		model.addAttribute("drink",drinkList);
-//		return "top";
-//	}
 	@GetMapping("/top")
 	public String top(Model model) {
 		model.addAttribute("message", "ようこそ");
@@ -73,11 +64,9 @@ public class DrinkController {
 		addressEnt.setRegisterDate(timestamp);
 
 		DrinkEnt drink = drinkRepository.findByName(name);
-//		addressEnt.setDrinkId(drink.getId());
 		
 		addressEnt.setDrinkEnt(drink);
 		System.out.println(addressEnt.getDrinkEnt().getName());
-//		System.out.println(drink.getName());
 		
 		// データがそろったのでテーブルに登録
 		addressRepository.saveAndFlush(addressEnt);
@@ -87,21 +76,28 @@ public class DrinkController {
 		
 		
 		model.addAttribute("tableData",addressList);
-//		DrinkEnt drinkNameTable=drinkRepository.findById(addressEnt.getId());
-//		String nameFinal=drinkNameTable.getName();
-//		AddressDto addressTable=new AddressDto();
-//		addressTable.setAddressId(addressEnt.getId());
-//		addressTable.setAddress(addressEnt.getAddress());
-//		addressTable.setDrinkName(drink.getName());
-//		addressTable.setRegisterDate(addressEnt.getRegisterDate());
-//		
-//		model.addAttribute("tableData",addressTable);
-//		int[] list2= {10,20,30,40};
-//		model.addAttribute("tableData2",list2);
-//		List<addressDto> addressList;
-//		addressDto.
 		redirectAttributes.addFlashAttribute("flashmsg","登録完了しました");
 		return "redirect:/top";
+	}
+	
+	@PostMapping("/select")
+//	public String select(Model model,@RequestParam("select") DrinkEnt select) {
+	public String select(Model model,@RequestParam("id,name") String idName) {
+		
+		String[]splitedIdName=idName.split(",");
+		
+		
+		DrinkEnt drinkEnt=new DrinkEnt();
+		long splitedId=Long.parseLong(splitedIdName[0]);
+		drinkEnt.setId(splitedId);
+		drinkEnt.setName(splitedIdName[1]);
+		List selectedList=addressRepository.findByDrinkEnt(drinkEnt);
+//		List<AddressEnt> selectedList=addressRepository.findAll();
+		
+		
+		model.addAttribute("selectedList",selectedList);
+		
+		return "list";
 	}
 
 	
