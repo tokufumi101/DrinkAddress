@@ -11,12 +11,12 @@
 	crossorigin="anonymous">
 <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
 <script type="text/javascript">
- $(function(){
-	 $("#submit_select").change(function(){
-		 $("#submit_form").submit();
-	 });
- });
- </script>
+	$(function() {
+		$("#submit_select").change(function() {
+			$("#submit_form").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<header>
@@ -70,15 +70,23 @@
 					<td th:text="${item.drinkEnt.name}"></td>
 					<td th:text="*{item.registerDate}"></td>
 					<td>
-					<form th:action="@{/delete}" method="post">
-						<input type="hidden" name="Id" th:value="${item.Id}" />
-						<input type="hidden" name="id,name" th:value="${item.drinkEnt.id}+','+ ${item.drinkEnt.name}"/>
-						 <input type="submit" class="btn btn-danger" value="削除" />
-					</form>
+						<form th:action="@{/delete}" method="post">
+							<input type="hidden" name="Id" th:value="${item.Id}" /> <input
+								type="hidden" name="id,name"
+								th:value="${item.drinkEnt.id}+','+ ${item.drinkEnt.name}" /> <input
+								type="submit" class="btn btn-danger" value="削除" />
+						</form>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<div class="map-wrap">
+			<div style="width:640px;height:320px;" id="map"></div>
+		</div>
 	</main>
+	<script src="map.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXsiaWb7EK4MS3_j2gWotj28RpyEwYCjU&callback=initMap"
+		async defer></script>
 </body>
 </html>
