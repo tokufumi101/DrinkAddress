@@ -41,6 +41,7 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
 					<td>
 					<form th:action="@{/delete}" method="post">
 						<input type="hidden" name="Id" th:value="${item.Id}" />
+						<input type="hidden" name="id,name" th:value="${item.drinkEnt.id}+','+ ${item.drinkEnt.name}"/>
 						 <input type="submit" class="btn btn-danger" value="削除" />
 					</form>
 					</td>
