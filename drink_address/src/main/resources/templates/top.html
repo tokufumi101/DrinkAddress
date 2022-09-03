@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>トップページ</title>
-<link rel="stylesheet" href="style.css">
+<link th:href="@{/style.css}" rel="stylesheet">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -26,7 +26,6 @@
 			</div>
 			<div class="header-list">
 				<form id="submit_form" th:action="@{/select}" method="post">
-
 					飲み物一覧<select id="submit_select" name="id,name">
 						<option value="#">下から選択</option>
 						<option th:each="item : ${data}"
@@ -46,7 +45,6 @@
 				<datalist id="DrinkList">
 					<option th:each="item : ${data}">[[${item.name}]]</option>
 				</datalist>
-
 				<p>
 					住所：<input type="text" name="address">
 				</p>
@@ -84,9 +82,16 @@
 			<div style="width:640px;height:320px;" id="map"></div>
 		</div>
 	</main>
-	<script src="map.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXsiaWb7EK4MS3_j2gWotj28RpyEwYCjU&callback=initMap"
-		async defer></script>
+
+	<div class="map-wrap">
+ 	<div style="width:640px;height:320px;" id="map"></div>
+	</div>
+	<!-- "YOUR_API_KEY" の部分に、作成したAPIキーを貼り付ける -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1EzrCTV-KIeGctAVtnsbYeKTNJyt9u9M&callback=initMap" async defer></script>
+
+<!-- 👇このjsファイル内にAPIを使用した記述を書く（後述） -->
+<script src="script.js"></script>
+
+>>>>>>> stash
 </body>
 </html>
