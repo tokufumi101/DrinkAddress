@@ -92,6 +92,8 @@ public class DrinkController {
 		List selectedList=addressRepository.findByDrinkEnt(drinkEnt);
 //		List<AddressEnt> selectedList=addressRepository.findAll();	
 		model.addAttribute("selectedList",selectedList);
+		List list = drinkRepository.findAll();
+		model.addAttribute("data", list);
 		
 		return "list";
 	}
