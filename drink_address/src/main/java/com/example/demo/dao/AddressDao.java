@@ -13,5 +13,5 @@ public interface AddressDao extends JpaRepository<AddressEnt,Long> {
 	
 	public List<AddressEnt> findByDrinkEnt(DrinkEnt drinkEnt);
 
-	public void deleteById(String id);
+	public void deleteById(long id);
 }

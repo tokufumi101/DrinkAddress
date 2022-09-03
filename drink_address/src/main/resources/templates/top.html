@@ -71,7 +71,8 @@
 					<td th:text="*{item.registerDate}"></td>
 					<td>
 					<form th:action="@{/delete}" method="post">
-						<input type="hidden" name="id" th:value="${item.id}" />
+						<input type="hidden" name="Id" th:value="${item.Id}" />
+						<input type="hidden" name="id,name" th:value="${item.drinkEnt.id}+','+ ${item.drinkEnt.name}"/>
 						 <input type="submit" class="btn btn-danger" value="削除" />
 					</form>
 					</td>

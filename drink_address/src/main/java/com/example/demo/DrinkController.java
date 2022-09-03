@@ -95,11 +95,32 @@ public class DrinkController {
 		
 		return "list";
 	}
+	@GetMapping("/select")
+//	public String select(Model model,@RequestParam("select") DrinkEnt select) {
+//	public String select2(Model model) {
+		public String select2(Model model,
+				@RequestParam(name="id,name",value="id,name",required=false) String idName) {
+		
+		String[]splitedIdName=idName.split(",");
+		
+		
+		DrinkEnt drinkEnt=new DrinkEnt();
+		long splitedId=Long.parseLong(splitedIdName[0]);
+		drinkEnt.setId(splitedId);
+		drinkEnt.setName(splitedIdName[1]);
+		List selectedList=addressRepository.findByDrinkEnt(drinkEnt);
+		model.addAttribute("selectedList",selectedList);
+		
+		return "list";
+	}
 	
 	@PostMapping("/delete")
-	public String delete(@RequestParam("id") Long id){
-		addressRepository.deleteById(id);
-		return "top";
+	public String delete(@RequestParam("Id") Long Id,
+			@RequestParam("id,name")String idName,
+			RedirectAttributes redirectAttributes){
+		addressRepository.deleteById(Id);
+		redirectAttributes.addAttribute("id,name",idName);
+		return "redirect:/select";
 	}
 
 	
