@@ -12,4 +12,6 @@ import com.example.demo.entity.DrinkEnt;
 public interface AddressDao extends JpaRepository<AddressEnt,Long> {
 	
 	public List<AddressEnt> findByDrinkEnt(DrinkEnt drinkEnt);
+
+	public void deleteById(String id);
 }

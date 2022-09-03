@@ -72,9 +72,7 @@ public class DrinkController {
 		addressRepository.saveAndFlush(addressEnt);
 		
 		List addressList=addressRepository.findAll();
-		
-		
-		
+
 		model.addAttribute("tableData",addressList);
 		redirectAttributes.addFlashAttribute("flashmsg","登録完了しました");
 		return "redirect:/top";
@@ -92,12 +90,16 @@ public class DrinkController {
 		drinkEnt.setId(splitedId);
 		drinkEnt.setName(splitedIdName[1]);
 		List selectedList=addressRepository.findByDrinkEnt(drinkEnt);
-//		List<AddressEnt> selectedList=addressRepository.findAll();
-		
-		
+//		List<AddressEnt> selectedList=addressRepository.findAll();	
 		model.addAttribute("selectedList",selectedList);
 		
 		return "list";
+	}
+	
+	@PostMapping("/delete")
+	public String delete(@RequestParam("id") Long id){
+		addressRepository.deleteById(id);
+		return "top";
 	}
 
 	
