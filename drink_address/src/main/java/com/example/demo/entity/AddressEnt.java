@@ -41,4 +41,10 @@ public class AddressEnt{
 	@ManyToOne
 //	@JoinColumn(name="drinkName")
 	private DrinkEnt drinkEnt;
+	
+	@Column(name="latitude")
+	private double latitude;
+	@Column(name="longitude")
+	private double longitude;
+	
 }
