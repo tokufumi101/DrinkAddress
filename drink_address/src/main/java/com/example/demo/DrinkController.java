@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.connection.RequestGeocoder;
 import com.example.demo.dao.AddressDao;
 import com.example.demo.dao.DrinkDao;
 import com.example.demo.dto.DrinkDto;
@@ -33,7 +37,19 @@ public class DrinkController {
 		model.addAttribute("data", list);
 		List addressList=addressRepository.findAll();
 		model.addAttribute("tableData",addressList);
-		
+		RestTemplate restTemplate=new RestTemplate();
+		String address="北海道札幌市";
+		String makeUrl = "https://msearch.gsi.go.jp/address-search/AddressSearch?q=";
+		String s_quote;
+		try {
+			s_quote = URLEncoder.encode(address, "UTF-8");
+			System.out.println(makeUrl+s_quote);
+			String a=makeUrl+s_quote;
+			 RequestGeocoder b= restTemplate.getForObject(a,RequestGeocoder.class);
+			 System.out.println(b);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		
 		
 		return "top";
