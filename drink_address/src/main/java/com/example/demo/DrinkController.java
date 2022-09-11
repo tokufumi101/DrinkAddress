@@ -49,7 +49,7 @@ public class DrinkController {
 			sQuote = URLEncoder.encode(address, "UTF-8");
 			System.out.println(makeUrl+sQuote);
 			String a=makeUrl+sQuote;
-//			 SuperRequestGeocorder b= restTemplate.getForObject(a,SuperRequestGeocorder.class);
+//			 Object b= restTemplate.getForObject(a,Object.class);
 //			 System.out.println(b);
 			 String result = "";
 			 JsonNode root = null;
@@ -67,10 +67,10 @@ public class DrinkController {
 		    root = mapper.readTree(result);
 		    in.close();
 		    con.disconnect();
-//			String b = restTemplate.getForObject(a,String.class);
-//	        ObjectMapper mapper = new ObjectMapper();
-//	        JsonNode node = mapper.readTree(b);
-	        System.out.println(root);
+	        for( JsonNode reqgeo : root) {
+	        	System.out.println(reqgeo.get("geometry").get("coordinates")); //緯度経度取得
+	        }
+//	        SuperRequestGeocorder user = mapper.readValues(root, SuperRequestGeocorder.class);
 //	        Hoge hoge = mapper.readValue(b, Hoge.class);
 
 
