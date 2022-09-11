@@ -1,6 +1,9 @@
 package com.example.demo;
 
-import java.io.UnsupportedEncodingException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.util.List;
@@ -15,12 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.connection.RequestGeocoder;
 import com.example.demo.dao.AddressDao;
 import com.example.demo.dao.DrinkDao;
 import com.example.demo.dto.DrinkDto;
 import com.example.demo.entity.AddressEnt;
 import com.example.demo.entity.DrinkEnt;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class DrinkController {
@@ -31,7 +35,7 @@ public class DrinkController {
 	AddressDao addressRepository;
 
 	@GetMapping("/top")
-	public String top(Model model) {
+	public String top(Model model) throws Exception {
 		model.addAttribute("message", "ようこそ");
 		List list = drinkRepository.findAll();
 		model.addAttribute("data", list);
@@ -40,16 +44,49 @@ public class DrinkController {
 		RestTemplate restTemplate=new RestTemplate();
 		String address="北海道札幌市";
 		String makeUrl = "https://msearch.gsi.go.jp/address-search/AddressSearch?q=";
-		String s_quote;
+		String sQuote;
 		try {
-			s_quote = URLEncoder.encode(address, "UTF-8");
-			System.out.println(makeUrl+s_quote);
-			String a=makeUrl+s_quote;
-			 RequestGeocoder b= restTemplate.getForObject(a,RequestGeocoder.class);
-			 System.out.println(b);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+			sQuote = URLEncoder.encode(address, "UTF-8");
+			System.out.println(makeUrl+sQuote);
+			String a=makeUrl+sQuote;
+//			 SuperRequestGeocorder b= restTemplate.getForObject(a,SuperRequestGeocorder.class);
+//			 System.out.println(b);
+			 String result = "";
+			 JsonNode root = null;
+		    URL url = new URL(a);
+		    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+		    con.connect(); // URL接続
+		    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream())); 
+		    String tmp = "";
+
+		       while ((tmp = in.readLine()) != null) {
+		        result += tmp;
+		    }
+
+		    ObjectMapper mapper = new ObjectMapper();
+		    root = mapper.readTree(result);
+		    in.close();
+		    con.disconnect();
+//			String b = restTemplate.getForObject(a,String.class);
+//	        ObjectMapper mapper = new ObjectMapper();
+//	        JsonNode node = mapper.readTree(b);
+	        System.out.println(root);
+//	        Hoge hoge = mapper.readValue(b, Hoge.class);
+
+
+			
+		} catch (Exception e) {
+
+		      // どういう例外が発生しているか出力する
+		      System.out.println("例外クラス: " + e.getClass().getName());
+
+		      // 原因となった例外のチェーンを出力する
+		      Throwable cause = e;
+		      while ((cause = cause.getCause()) != null) {
+		        System.out.println("原因例外クラス: " + cause.getClass().getName());
+		      }
+		      throw e;
+	    }
 		
 		
 		return "top";
