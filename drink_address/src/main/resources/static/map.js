@@ -1,5 +1,5 @@
 window.initMap = () => {
-	console.log('こんにちわ');
+	
     let map;
 
     const area = document.getElementById("map"); // マップを表示させるHTMLの箱
