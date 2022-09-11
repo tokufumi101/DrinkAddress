@@ -4,7 +4,10 @@
 9/7
 {
  "geometry":
-  {"coordinates":[141.349243,43.068455],
+  {"coordinates":[
+  141.349243,
+  43.068455
+  ],
    "type":"Point"
    },
    

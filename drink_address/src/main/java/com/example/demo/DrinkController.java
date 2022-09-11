@@ -35,12 +35,14 @@ public class DrinkController {
 	AddressDao addressRepository;
 
 	@GetMapping("/top")
-	public String top(Model model) throws Exception {
+	public String top(Model model, AddressEnt addressEnt) throws Exception {
 		model.addAttribute("message", "ようこそ");
 		List list = drinkRepository.findAll();
 		model.addAttribute("data", list);
 		List addressList = addressRepository.findAll();
 		model.addAttribute("tableData", addressList);
+//		model.addAttribute("latitude",addressEnt.getLatitude());
+//		model.addAttribute("longitude",addressEnt.getLongitude());
 //		RestTemplate restTemplate=new RestTemplate();
 //		String address = "北海道札幌市";
 //		String makeUrl = "https://msearch.gsi.go.jp/address-search/AddressSearch?q=";
@@ -174,7 +176,7 @@ public class DrinkController {
 
 		model.addAttribute("tableData", addressList);
 		redirectAttributes.addFlashAttribute("flashmsg", "登録完了しました");
-
+		
 		return "redirect:/top";
 	}
 
