@@ -11,4 +11,4 @@ values('東京','2022-08-28 11:42:31.528',1,141.354401,43.062077);
 insert into address_list(address,register_date,drink_ent_id,latitude,longitude)
 values('東京','2022-08-28 11:42:31.528',1,141.354401,43.062077);
 insert into address_list(address,register_date,drink_ent_id,latitude,longitude)
-values('東京','2022-08-28 11:42:31.528',1,141.354401,43.062077);
+values('東京','2022-08-28 11:42:31.528',1,139.665909,35.659534);
