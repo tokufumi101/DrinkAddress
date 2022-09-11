@@ -35,7 +35,7 @@ public class DrinkController {
 	AddressDao addressRepository;
 
 	@GetMapping("/top")
-	public String top(Model model) {
+	public String top(Model model) throws Exception {
 		model.addAttribute("message", "ようこそ");
 		List list = drinkRepository.findAll();
 		model.addAttribute("data", list);
@@ -93,6 +93,8 @@ public class DrinkController {
 //			e.printStackTrace();
 //		}
 
+
+		
 		return "top";
 	}
 
