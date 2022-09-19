@@ -1,3 +1,7 @@
+9/19
+次回：ドリンクの種類を選択した際に、それに応じたマップが表示されるようにする
+初手：マップをhttp://localhost:8080/selectに埋め込む。
+
 9/11
 次回：複数ピンをさす。（現時点でDBにある全データの経度をjsに出力完了）
 次回使えそうなurl : https://www.tam-tam.co.jp/tipsnote/javascript/post7755.html
