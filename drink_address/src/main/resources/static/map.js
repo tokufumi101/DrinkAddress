@@ -1,44 +1,27 @@
-window.initMap = () => {
-	
-    let map;
-
-    const area = document.getElementById("map"); // マップを表示させるHTMLの箱
-	/*var latitude=parseFloat(document.getElementById("latitude").innerText);
-	var longitude=parseFloat(document.getElementById("longitude").innerText);*/
+function initMap() {
+	 let map;
+    var marker = [];
+      tokyo = new google.maps.LatLng(35.689614,139.691585);
+	  var opts = {
+    zoom: 4,
+    center: tokyo
+  };
+  map = new google.maps.Map(document.getElementById("map"), opts);
+  
 	var table=document.getElementsByClassName('tableData');
-	/*console.log(latitude);
-	console.log(longitude);*/
-	console.log(table);
 	for(let i=0;i<table.length;i++){
-		var latitude=table[i].childNodes[9].textContent;
-		var longitude=table[i].childNodes[11].textContent;
+		//markerLatLng = new google.maps.LatLng({lat: parseFloat(table[i].childNodes[11].textContent), lng: parseFloat(table[i].childNodes[9].textContent)});
+		var markerLatLng = new google.maps.LatLng(80, 20);
+		var latitude=parseFloat(table[i].childNodes[11].textContent);
+		var longitude= parseFloat(table[i].childNodes[9].textContent);
+		var myLatLng = {lat: latitude,lng:longitude};
 		console.log(latitude);
-		console.log(longitude);
-		
+		marker[i] = new google.maps.Marker({ // マーカーの追加
+         position: myLatLng, // マーカーを立てる位置を指定
+            map: map // マーカーを立てる地図を指定
+       });
 	}
-	
-	var latitudes=[141.354401,139.665909];
-	var longitudes=[43.062077,35.659534];
-	
-　　// マップの中心位置(例:原宿駅)
-    var center = {
-      lat: 141.354401,
-      lng: 43.062077
-	  
-    };
-	
-	
-	
-	
-
-	console.log(center);
-    //マップ作成
-    map = new google.maps.Map(area, {
-      center,
-      zoom: 13,
-    });
-    console.log("こんにちは");
-        //マーカーオプション設定👇追記
+   /*     //マーカーオプション設定👇追記
     const markerOption = {
       position: center, // マーカーを立てる位置を指定
       map: map, // マーカーを立てる地図を指定
@@ -49,5 +32,6 @@ window.initMap = () => {
     }
 
     //マーカー作成
-    const marker = new google.maps.Marker(markerOption); 
+    //const marker = new google.maps.Marker(markerOption); */
+  //}
   }
