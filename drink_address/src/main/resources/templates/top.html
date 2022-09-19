@@ -66,7 +66,7 @@
 				<tr class="tableData" th:each="item:${tableData}">
 					<th th:text="*{item.Id}"></th>
 					<td id="address" th:text="*{item.address}"></td>
-					<td th:text="${item.drinkEnt.name}"></td>
+					<td id="drinkName" th:text="${item.drinkEnt.name}"></td>
 					<td th:text="*{item.registerDate}"></td>
 					<td style="display:none;"class="latitude" th:text="*{item.latitude}"></td>
 					<td style="display:none;"class="longitude" th:text="*{item.longitude}"></td>
