@@ -41,59 +41,6 @@ public class DrinkController {
 		model.addAttribute("data", list);
 		List addressList = addressRepository.findAll();
 		model.addAttribute("tableData", addressList);
-//		model.addAttribute("latitude",addressEnt.getLatitude());
-//		model.addAttribute("longitude",addressEnt.getLongitude());
-//		RestTemplate restTemplate=new RestTemplate();
-//		String address = "北海道札幌市";
-//		String makeUrl = "https://msearch.gsi.go.jp/address-search/AddressSearch?q=";
-//		String sQuote = null;
-//		String result = "";
-//		JsonNode root = null;
-//		try {
-//			sQuote = URLEncoder.encode(address, "UTF-8");
-//		} catch (UnsupportedEncodingException e) {
-//			e.printStackTrace();
-//		}
-//		String a = makeUrl + sQuote;
-//		System.out.println(a);
-//		try {
-//			URL url = new URL(a);
-//			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-//			con.connect(); // URL接続
-//			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//			String tmp = "";
-//			while ((tmp = in.readLine()) != null) {
-//		        result += tmp;
-//			}
-//			 ObjectMapper mapper = new ObjectMapper();
-//			    root = mapper.readTree(result);
-//			    in.close();
-//			    con.disconnect();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println(root);
-//		 for( JsonNode reqgeo : root) {
-//	        	System.out.println(reqgeo.get("geometry").get("coordinates")); //緯度経度取得
-//	        }
-//		double json=root.get("geometry").get("coordinates").doubleValue();
-//		System.out.println(json);
-
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		SuperRequestGeocoder myData=objectMapper.convertValue(root, SuperRequestGeocoder.class);
-
-//		SuperRequestGeocoder hoge=objectMapper.readValue(root, SuperRequestGeocoder.class);
-//		List<RequestGeocoder> rgList = objectMapper.convertValue(root, new TypeReference<List<RequestGeocoder>>() {});
-//		System.out.println(rgList.get(0).getGeometry().getCoordinates().get(0).getLatitude());
-//		try {
-//			sQuote = URLEncoder.encode(address, "UTF-8");
-//			System.out.println(makeUrl+sQuote);
-//			String a=makeUrl+sQuote;
-//			 SuperRequestGeocoder b= restTemplate.getForObject(a,SuperRequestGeocoder.class);
-//			 System.out.println(b);
-//		} catch (UnsupportedEncodingException e) {
-//			e.printStackTrace();
-//		}
 
 
 		
@@ -156,6 +103,7 @@ public class DrinkController {
 			root = mapper.readTree(result);
 			in.close();
 			con.disconnect();
+			System.out.println(root);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -165,12 +113,18 @@ public class DrinkController {
 //	        	
 //	        }
 //		 addressEnt.setLatitude();
-
+		try {
 		double lat = root.get(0).get("geometry").get("coordinates").get(0).asDouble();
 		double lon = root.get(0).get("geometry").get("coordinates").get(1).asDouble();
 		addressEnt.setLatitude(lat);
 		addressEnt.setLongitude(lon);
 		addressRepository.saveAndFlush(addressEnt);
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("flashmsg", "入力値が無効です");
+			return "redirect:/top";
+		}
+		
 
 		List addressList = addressRepository.findAll();
 
