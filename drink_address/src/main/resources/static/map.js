@@ -7,11 +7,10 @@ function initMap() {
     center: tokyo
   };
   map = new google.maps.Map(document.getElementById("map"), opts);
-  
+  var infoWindow=[];
 	var table=document.getElementsByClassName('tableData');
 	for(let i=0;i<table.length;i++){
 		//markerLatLng = new google.maps.LatLng({lat: parseFloat(table[i].childNodes[11].textContent), lng: parseFloat(table[i].childNodes[9].textContent)});
-		var markerLatLng = new google.maps.LatLng(80, 20);
 		var latitude=parseFloat(table[i].childNodes[11].textContent);
 		var longitude= parseFloat(table[i].childNodes[9].textContent);
 		var myLatLng = {lat: latitude,lng:longitude};
@@ -20,6 +19,16 @@ function initMap() {
          position: myLatLng, // マーカーを立てる位置を指定
             map: map // マーカーを立てる地図を指定
        });
+		infoWindow[i]=new google.maps.InfoWindow({
+			/*content:document.getElementById("drinkName").childNodes.values.toString*/
+			content:'<div class="sample">'+ table[i].childNodes[5].textContent + '</div>'
+		})
+		markerEvent(i);//マーカーにクリックイベントを追加
+	}
+	function markerEvent(i){
+		marker[i].addListener('click',function(){
+			infoWindow[i].open(map,marker[i]);
+		});
 	}
    /*     //マーカーオプション設定👇追記
     const markerOption = {
