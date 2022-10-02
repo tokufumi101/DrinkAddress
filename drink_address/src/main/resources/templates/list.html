@@ -48,11 +48,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="item:${selectedList}">
+					<tr class="tableData" th:each="item:${selectedList}">
 						<th th:text="*{item.Id}"></th>
 						<td th:text="*{item.address}"></td>
 						<td th:text="${item.drinkEnt.name}"></td>
 						<td th:text="*{item.registerDate}"></td>
+						<td style="display: none;" class="latitude"
+							th:text="*{item.latitude}"></td>
+						<td style="display: none;" class="longitude"
+							th:text="*{item.longitude}"></td>
 						<td>
 							<form th:action="@{/delete}" method="post">
 								<input type="hidden" name="Id" th:value="${item.Id}" /> <input
@@ -65,6 +69,16 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="map-wrap">
+			<div style="width: 640px; height: 320px;" id="map"></div>
+		</div>
 	</main>
+	<!-- "YOUR_API_KEY" の部分に、作成したAPIキーを貼り付ける -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1EzrCTV-KIeGctAVtnsbYeKTNJyt9u9M&callback=initMap"
+		async defer></script>
+
+	<!-- 👇このjsファイル内にAPIを使用した記述を書く（後述） -->
+	<script src="top.js"></script>
 </body>
 </html>
