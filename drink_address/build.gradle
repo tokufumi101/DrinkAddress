@@ -30,6 +30,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//Googlemaps API
+	//compile 'com.google.maps:google-maps-services:0.2.5'
+    //compile 'org.slf4j:slf4j-nop:1.7.25'
 }
 
 tasks.named('test') {

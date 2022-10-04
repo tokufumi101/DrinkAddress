@@ -7,31 +7,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
-@Setter
-@Table(name="address_list_git")
+
+
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Table(name="address_list")
 public class AddressEnt{
 	
 	@Column(name="id")
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
 	
-	@Column(name="encount_date")
-	private Timestamp encountDate;
-	
-	@ManyToOne()
-	@JoinColumn(name="drink_id",referencedColumnName = "id")
-	private DrinkEnt drinkId;
+	@Column(name="register_date")
+	private Timestamp registerDate;
+
 	
 	@Column(name="address")
 	private String address;
+	
+	@ManyToOne
+//	@JoinColumn(name="drinkName")
+	private DrinkEnt drinkEnt;
+	
+	@Column(name="latitude")
+	private double latitude;
+	@Column(name="longitude")
+	private double longitude;
+	
 }

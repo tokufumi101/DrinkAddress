@@ -3,43 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <title>トップページ</title>
-<link rel="stylesheet" href="style.css">
+<link th:href="@{/style.css}" rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#submit_select").change(function() {
+			$("#submit_form").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<header>
 		<div class="container">
 			<div class="header-logo">
-				<p>飲み物住所</p>
+				<a th:href="@{/top}">飲み物住所</a>
 			</div>
 			<div class="header-list">
-				<p>飲み物一覧<select name="drinkName">
-				<option value="default">下から選択</option>
-				<option value="pocari">缶ポカリ</option>
-				<option value="pepsi">ペプシ</option>
-				<option value="pepsiTwist">ペプシツイスト</option>
-				<option value="DoctorPepper">ドクターペッパー</option>
-			</select></p>
+				<form id="submit_form" th:action="@{/select}" method="post">
+					飲み物一覧<select id="submit_select" name="id,name">
+						<option value="#">下から選択</option>
+						<option th:each="item : ${data}"
+							th:value="${item.id}+','+ ${item.name}">[[${item.name}]]</option>
+					</select>
+				</form>
 			</div>
 		</div>
 	</header>
 	<main>
+		<p class="flashmsg" th:text="${flashmsg}"></p>
 		<div class="container">
 			<h1 th:text="${message}">ようこそ</h1>
-			<select name="drinkName">
-				<option value="default">下から選択</option>
-				<option value="pocari">缶ポカリ</option>
-				<option value="pepsi">ペプシ</option>
-				<option value="pepsiTwist">ペプシツイスト</option>
-				<option value="DoctorPepper">ドクターペッパー</option>
-			</select>
-			<form method="get" th:action="@{/top}">
+			<form method="post" th:action="@{/top}" th:object="${drinkDto}">
+
+				<input list="DrinkList" autocomplete="off" name="name">
+				<datalist id="DrinkList">
+					<option th:each="item : ${data}">[[${item.name}]]</option>
+				</datalist>
 				<p>
-					住所：<input type="text" name="address">
+					住所：<input id="addressOutput" type="text" name="address">
 				</p>
+				<div class="center">
+					<div class="btn-margin">
+						<button type='button' id="btn"
+							class="btn btn-outline-primary btn-lg">現在位置を取得する</button>
+					</div>
+				</div>
 				<input type="submit" value="送信">
+
 			</form>
 		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>住所</th>
+					<th>ドリンク名</th>
+					<th>登録日時</th>
 
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="tableData" th:each="item:${tableData}">
+					<th th:text="*{item.Id}"></th>
+					<td id="address" th:text="*{item.address}"></td>
+					<td id="drinkName" th:text="${item.drinkEnt.name}"></td>
+					<td th:text="*{item.registerDate}"></td>
+					<td style="display: none;" class="latitude"
+						th:text="*{item.latitude}"></td>
+					<td style="display: none;" class="longitude"
+						th:text="*{item.longitude}"></td>
+					<td>
+						<form th:action="@{/delete}" method="post">
+							<input type="hidden" name="Id" th:value="${item.Id}" /> <input
+								type="hidden" name="id,name"
+								th:value="${item.drinkEnt.id}+','+ ${item.drinkEnt.name}" /> <input
+								type="submit" class="btn btn-danger" value="削除" />
+						</form>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+
+
+		<div class="map-wrap">
+			<div style="width: 640px; height: 320px;" id="map"></div>
+		</div>
 	</main>
+	<!-- "YOUR_API_KEY" の部分に、作成したAPIキーを貼り付ける -->
+	<script type="text/javascript"
+		src="http://maps.google.com/maps/api/js?key=AIzaSyD1EzrCTV-KIeGctAVtnsbYeKTNJyt9u9M"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1EzrCTV-KIeGctAVtnsbYeKTNJyt9u9M&callback=initMap"
+		async defer></script>
+
+	<!-- 👇このjsファイル内にAPIを使用した記述を書く（後述） -->
+	<script src="map.js"></script>
+
 </body>
 </html>
