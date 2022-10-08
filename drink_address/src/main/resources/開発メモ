@@ -1,3 +1,68 @@
+10/8どおなっちゃってんだよ！
+C:\Users\Atsushi\git\DrinkAddress\drink_address>git push heroku master
+Counting objects: 108, done.
+Delta compression using up to 16 threads.
+Compressing objects: 100% (83/83), done.
+Writing objects: 100% (108/108), 35.84 MiB | 267.00 KiB/s, done.
+Total 108 (delta 35), reused 8 (delta 5)
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote: -----> Building on the Heroku-22 stack
+remote: -----> Using buildpack: heroku/gradle
+remote: -----> Gradle app detected
+remote: -----> Spring Boot detected
+remote: -----> Installing OpenJDK 1.8... done
+remote: -----> Building Gradle app...
+remote: -----> executing ./gradlew build -x check
+remote:        Downloading https://services.gradle.org/distributions/gradle-7.4.1-bin.zip
+remote:        ...........10%...........20%...........30%...........40%...........50%...........60%...........70%...........80%...........90%...........100%
+remote:        To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/7.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+remote:        Daemon will be stopped at the end of the build
+remote:        > Task :compileJava NO-SOURCE
+remote:        > Task :processResources NO-SOURCE
+remote:        > Task :classes UP-TO-DATE
+remote:        > Task :bootWarMainClassName
+remote:        > Task :bootWar FAILED
+remote:
+remote:        FAILURE: Build failed with an exception.
+remote:
+remote:        * What went wrong:
+remote:        Execution failed for task ':bootWar'.
+remote:        > Error while evaluating property 'mainClass' of task ':bootWar'
+remote:           > Failed to calculate the value of task ':bootWar' property 'mainClass'.
+remote:              > Main class name has not been configured and it could not be resolved
+remote:
+remote:        * Try:
+remote:        > Run with --stacktrace option to get the stack trace.
+remote:        > Run with --info or --debug option to get more log output.
+remote:        > Run with --scan to get full insights.
+remote:
+remote:        * Get more help at https://help.gradle.org
+remote:
+remote:        BUILD FAILED in 20s
+remote:        2 actionable tasks: 2 executed
+remote:
+remote:  !     ERROR: Failed to run Gradle!
+remote:        We're sorry this build is failing. If you can't find the issue in application
+remote:        code, please submit a ticket so we can help: https://help.heroku.com
+remote:        You can also try reverting to the previous version of the buildpack by running:
+remote:        $ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-gradle#previous-version
+remote:
+remote:        Thanks,
+remote:        Heroku
+remote:
+remote:  !     Push rejected, failed to compile Gradle app.
+remote:
+remote:  !     Push failed
+remote: Verifying deploy...
+remote:
+remote: !       Push rejected to drinkaddress.
+remote:
+To https://git.heroku.com/drinkaddress.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'https://git.heroku.com/drinkaddress.git'
+
 10/2
 今日：現在地を取得、真ん中表示できた
 次回：DBをmySQLにする→環境構築からスタート（嫌すぎる）
