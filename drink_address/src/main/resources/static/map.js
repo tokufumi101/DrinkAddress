@@ -86,6 +86,7 @@ function initMap() {
 				document.getElementById('addressOutput').value = formAddress;
 			});
 
+<<<<<<< HEAD
       map.panTo(new google.maps.LatLng(latitude,longitude));
 	};
 
@@ -97,3 +98,12 @@ function initMap() {
 
 
 
+=======
+		map.panTo(new google.maps.LatLng(latitude, longitude));
+	};
+
+	function errorCallback(error) {
+		alert("位置情報が取得できませんでした");
+	};
+}
+>>>>>>> branch 'kawasaki_maekawa' of https://github.com/tokufumi101/DrinkAddress.git
